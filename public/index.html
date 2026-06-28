@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FakeMailer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        FakeMailer
+      </div>
+      <span class="badge">Send as anyone</span>
+    </header>
+
+    <form id="mailForm">
+      <div class="field-group">
+        <div class="field">
+          <label for="fromName">From Name <span class="opt">(optional)</span></label>
+          <input type="text" id="fromName" name="fromName" placeholder="John Doe" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="fromEmail">From Email <span class="req">*</span></label>
+          <input type="email" id="fromEmail" name="fromEmail" placeholder="john@example.com" required autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="subject">Subject <span class="req">*</span></label>
+        <input type="text" id="subject" name="subject" placeholder="Your subject here" required />
+      </div>
+
+      <div class="field">
+        <label for="body">Message <span class="req">*</span></label>
+        <textarea id="body" name="body" rows="10" placeholder="Write your message here..." required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Attachments <span class="opt">(max 10 files, 15 MB each)</span></label>
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="attachments" name="attachments" multiple hidden />
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+          </svg>
+          <p>Drop files here or <button type="button" id="browseBtn">browse</button></p>
+        </div>
+        <ul class="file-list" id="fileList"></ul>
+      </div>
+
+      <button type="submit" id="sendBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+        </svg>
+        Send Mail
+      </button>
+    </form>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

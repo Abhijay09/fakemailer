@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fakemailer
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: TO_EMAIL
+        value: abhijay0910@gmail.com
