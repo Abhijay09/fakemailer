@@ -39,19 +39,16 @@ app.post('/send', upload.array('attachments', 10), async (req, res) => {
 
   const htmlBody = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 640px; margin: 0 auto;">
-      <div style="background: #f0f4ff; border-left: 4px solid #4f6ef7; padding: 14px 18px; border-radius: 4px; margin-bottom: 24px; font-size: 13px; color: #555;">
-        <strong>Fake From:</strong> ${displayFrom}
-      </div>
       <div style="font-size: 15px; line-height: 1.7; color: #222; white-space: pre-wrap;">${escapeHtml(body)}</div>
     </div>
   `;
 
   try {
     await transporter.sendMail({
-      from: `"FakeMailer" <${process.env.SMTP_USER}>`,
+      from: `"${fromName || fromEmail}" <${process.env.SMTP_USER}>`,
       replyTo: `"${fromName || fromEmail}" <${fromEmail}>`,
       to: process.env.TO_EMAIL,
-      subject: `[${fromEmail}] ${subject}`,
+      subject,
       text: body,
       html: htmlBody,
       attachments
